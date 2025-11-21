@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 function dbConnect() {
-    const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/e-commerce';
+    const url =
+      process.env.MONGO_URL || "mongodb://localhost:27017/e-commerce";
     mongoose.connect(url).then(() => {
         console.log('Connected to MongoDB');
     }).catch((err) => {
