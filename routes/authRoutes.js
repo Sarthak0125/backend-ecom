@@ -18,7 +18,7 @@ router.post("/logout", auth, logout);
 
 router.post("/admin/signup", auth, adminOnly, signupAdmin);
 
-router.get("/profile", auth, (req, res) => {
+router.get("/me", auth, (req, res) => {
   res.json({ message: "This is a protected route", userId: req.userId });
 });
 
