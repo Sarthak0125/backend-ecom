@@ -8,8 +8,8 @@ const {
   logout,
   signupAdmin,
 } = require("../controllers/authController");
-const auth = require("../middleware/authMiddleware");
-const adminOnly = require("../middleware/adminOnly");
+const { auth, adminOnly } = require("../middleware/auth");
+
 
 router.post("/signup", signup);
 router.post("/login", login);

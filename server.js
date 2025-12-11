@@ -1,8 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors")
 require("dotenv").config();
 const User = require("./models/e-commerce/user.models")
 const authRoutes = require("./routes/authRoutes");
+const categoryRoutes = require("./routes/category")
 const app = express();
 app.use(express.json());
 const port = process.env.PORT || 3000;
@@ -10,12 +12,17 @@ const port = process.env.PORT || 3000;
 const dbConnect = require("./db");
 dbConnect();
 
+app.use(cors({
+  origin: "http://localhost:5173", // frontend URL
+    credentials: true,
+}))
+
 app.get("/api/hello", (req, res) => {
   const hello = "Hello from the backend!";
   res.send(hello);
 });
 app.use("/api/auth", authRoutes);
-
+app.use("/api/category", categoryRoutes); 
 // Bootstrap an admin user if none exists
 (async function bootstrapAdmin() {
   try {
